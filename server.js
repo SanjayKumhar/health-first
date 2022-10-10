@@ -18,7 +18,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 const PORT = process.env.PORT || 3000;
 
+app.set('views', path.join('./views'));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
 // Set static folder
+var fetchRouter = require('./utils/fetch-route');
+app.use('/', fetchRouter);
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json())
@@ -70,6 +78,7 @@ app.post("/doctor_registeration", (req, res) => {
     var email = req.body.email;
     var phno = req.body.phno;
     var speciality = req.body.speciality;
+    var regNo = req.body.regno;
 
     var data = {
 
@@ -77,7 +86,8 @@ app.post("/doctor_registeration", (req, res) => {
         "email": email,
         "phno": phno,
         "password": password,
-        "speciality": speciality
+        "speciality": speciality,
+        "registeration": regNo
     }
 
     db.collection('doctors').insertOne(data, (err, collection) => {
@@ -115,11 +125,50 @@ app.post("/booking", (req, res) => {
 
 })
 
-// app.get("/doctor", (req, res) => {
-//     res.redirect('dr_index.html');
+// app.get("/getdoctors", (req, res) => {
+//     // var  special = res.body.speciality;
+//     db.collection('doctors').find({
+//             speciality: req.params.speciality
+//         }),
+//         function(err, result) {
+//             if (err) throw err;
+//             // res.json(result);
+//             console.log(result);
+//             // db.close();
+//         };
+
 // })
 
+// var schema = new mongoose.Schema({
+//     name : String,
+//     origin : String,
+//     destination : String,
+//     estimatedTimeOfArrival : String,
+//     date : String,
+//     time : String
+//   }) 
+// var detailsModel = mongoose.model("detailsModel", schema);
 
+// app.get("/getdoctors", function(req, res) {
+//     detailsModel.find({}, function(err, allDetails) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.render("details", { details: allDetails })
+//         }
+//     })
+// })
+
+// app.get('/getdoctors', function(req, res) {
+//     db.collection('doctors', function(err, data) {
+//         if (err) {
+//             throw err;
+//         } else {
+//             data.find();
+//             res.render('details', { data: data });
+//         }
+//     })
+// })
 
 
 const botName = 'ChatFirst Bot';

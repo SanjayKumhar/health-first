@@ -25,15 +25,15 @@
             <div class="col-md-6 main">
                 <form action="/booking" method="POST">
                     <h2>Booking Appointment</h2>
-                    <input type="text" class="box" id="name" name="name" placeholder="Name" required />
+                    <input type="text" class="box" id="name" name="name" placeholder="Patient Name" required />
                     <br>
-                    <input type="text" class="box" id="email" name="email" placeholder="Email" required />
+                    <input type="email" class="box" id="email" name="email" placeholder="Email" required />
                     <br>
-                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required />
+                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" required minlength="10" maxlength="10" />
                     <br>
                     <input type="text" class="box" id="symptoms" name="symptoms" placeholder="symptoms" required />
                     <br>
-                    <input  style="background-color: rgb(0, 140, 255);" type="submit" value="Submit" id="submit" />
+                    <input style="background-color: rgb(0, 140, 255);" type="submit" value="Submit" id="submit" />
                 </form>
             </div>
             <div class="col-md-3">

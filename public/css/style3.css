@@ -10,6 +10,10 @@
     /* Optional: just make scrollbar invisible */
 }
 
+body{
+    background: var(--light-color);
+}
+
 .navlist {
     margin-top: 80px;
     margin-bottom: 10px;

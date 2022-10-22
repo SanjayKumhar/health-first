@@ -16,7 +16,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    background: var(--light-color);
+    background: lightblue;
     margin: 20px;
 }
 
@@ -134,6 +134,7 @@ a {
 .join-container {
     max-width: 500px;
     margin: 110px auto;
+    margin-bottom: 30px;
     color: #fff;
 }
 
@@ -189,4 +190,8 @@ a {
     .chat-sidebar {
         display: none;
     }
+}
+
+.list_doctor{
+    padding-left: 480px;
 }

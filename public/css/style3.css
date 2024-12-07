@@ -66,6 +66,7 @@ a {
 .feature1,
 .feature2,
 .feature3 {
+    background-color: lightblue;
     display: flex;
     flex-direction: row;
     align-items: center;

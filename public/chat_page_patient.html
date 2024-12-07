@@ -12,9 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Ephesis&family=Indie+Flower&family=Oswald:wght@200&family=Stick+No+Bills:wght@200&display=swap" rel="stylesheet">
     <title>Health First Chat</title>
+    <style type="text/css">
+        a:hover,button:hover{
+    color: rgb(1, 1, 190);
+}
+
+    </style>
 </head>
 
-<body style="background: lightblue;">
+<body style="background: white">
     <div class="project-title-header">
         <h2>
             <a href="index.html" class="project-name-a">Health First . com</a>
@@ -23,7 +29,7 @@
 
     <div class="join-container">
         <header class="join-header">
-            <h1><i class="fas fa-smile"></i> Patient's Chat Box</h1>
+            <h1>Patient's Chat Box</h1>
         </header>
         <main class="join-main">
             <form action="chat_patient.html">
@@ -32,15 +38,15 @@
                     <input type="text" name="username" id="username" placeholder="Enter your name..." required />
                 </div>
                 <div class="form-control">
-                    <label for="room">Appintment Number</label>
-                    <input type="text" id="room" name="room" placeholder="Enter doctor registeration number..." required>
+                    <label for="room">Appointment Number</label>
+                    <input type="text" id="room" name="room" placeholder="Enter doctor registration number..." required>
                 </div>
                 <button type="submit" class="btn">Join Chat</button>
             </form>
         </main>
     </div>
     <div class="list_doctor">
-        <a href="/fetch-data" >See list of Available doctors</a>
+        <a href="/fetch-data" style="padding: 0px;" >*Get list of Available doctors by clicking here.</a>
     </div>
 </body>
 

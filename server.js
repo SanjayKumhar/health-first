@@ -2,8 +2,9 @@
 const path = require('path');
 const http = require('http');
 const express = require('express');
-var bodyParser = require("body-parser")
-var mongoose = require("mongoose")
+var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+const multer = require("multer");
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
 const {
@@ -32,8 +33,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
-}))
-mongoose.connect('mongodb://localhost:27017/mydb', {
+}));
+mongoose.createConnection('mongodb://127.0.0.1:27017/mydb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -71,8 +72,9 @@ app.post("/sign_up", (req, res) => {
 //     res.redirect('pt_index.html');
 // })
 
+const doctor_registration_form = multer();
 
-app.post("/doctor_registeration", (req, res) => {
+app.post("/doctor_registeration",doctor_registration_form.none(), (req, res) => {
     var name = req.body.name;
     var password = req.body.password;
     var email = req.body.email;
@@ -90,15 +92,16 @@ app.post("/doctor_registeration", (req, res) => {
         "registeration": regNo
     }
 
+    // console.log(data);
+
     db.collection('doctors').insertOne(data, (err, collection) => {
         if (err) {
-            throw err;
+            console.error("Error inserting record:", err);
+            return res.status(500).send("Error occurred while inserting data.");
         }
         console.log("Record Inserted Successfully");
+        return res.status(200).json({ message: "Registration successful. You can consult your patient.", redirect: "onlineConsultation.html" });
     });
-
-    return res.redirect('success_doctor.html')
-
 })
 
 app.post("/booking", (req, res) => {
